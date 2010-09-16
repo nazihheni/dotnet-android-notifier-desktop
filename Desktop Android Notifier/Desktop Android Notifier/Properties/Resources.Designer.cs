@@ -60,6 +60,13 @@ namespace Desktop_Android_Notifier.Properties {
             }
         }
         
+        internal static System.Drawing.Icon android_notifier_icon {
+            get {
+                object obj = ResourceManager.GetObject("android_notifier_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon android_sms {
             get {
                 object obj = ResourceManager.GetObject("android_sms", resourceCulture);
@@ -67,10 +74,80 @@ namespace Desktop_Android_Notifier.Properties {
             }
         }
         
-        internal static System.Drawing.Icon android_sms_large {
+        internal static System.Drawing.Icon android_sms_small {
             get {
-                object obj = ResourceManager.GetObject("android_sms_large", resourceCulture);
+                object obj = ResourceManager.GetObject("android_sms_small", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_0 {
+            get {
+                object obj = ResourceManager.GetObject("battery_0", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_10 {
+            get {
+                object obj = ResourceManager.GetObject("battery_10", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_100 {
+            get {
+                object obj = ResourceManager.GetObject("battery_100", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_20 {
+            get {
+                object obj = ResourceManager.GetObject("battery_20", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_40 {
+            get {
+                object obj = ResourceManager.GetObject("battery_40", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_60 {
+            get {
+                object obj = ResourceManager.GetObject("battery_60", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon battery_80 {
+            get {
+                object obj = ResourceManager.GetObject("battery_80", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon call {
+            get {
+                object obj = ResourceManager.GetObject("call", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap call_image {
+            get {
+                object obj = ResourceManager.GetObject("call_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sms_image {
+            get {
+                object obj = ResourceManager.GetObject("sms_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
