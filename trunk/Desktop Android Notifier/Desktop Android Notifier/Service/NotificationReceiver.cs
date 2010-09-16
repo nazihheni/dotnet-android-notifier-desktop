@@ -1,67 +1,31 @@
 ﻿using System;
+using Desktop_Android_Notifier.Notifications;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using InTheHand.Net;
-using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
-
 namespace Desktop_Android_Notifier.Service
 {
-    class NotificationReceiver
+    abstract class NotificationReceiver
     {
-        static readonly Guid BluetoothNotificationSerivce = Guid.Parse("7674047E-6E47-4BF0-831F-209E3F9DD23F");
+        Dictionary<NotificationEvent, INotificationHandler> handlers = new Dictionary<NotificationEvent, INotificationHandler>(5);
 
-        BluetoothListener listener;
-
-        public event Action<string> MessageEvent;
-
-        public NotificationReceiver()
+        public void RegisterHandler(INotificationHandler handler)
         {
-            listener = new BluetoothListener(BluetoothNotificationSerivce);
-            listener.ServiceName = "AndroidNotifierService";
+            handlers.Add(handler.NotificationType, handler);   
         }
 
-        public void Start()
+        public void UnregisterHandler(INotificationHandler handler)
         {
-            listener.Start();
-            listener.BeginAcceptBluetoothClient(new AsyncCallback(AcceptClient), null);
+            handlers.Remove(handler.NotificationType);
         }
 
-        public void AcceptClient(IAsyncResult result)
+        public abstract void Start();
+        public abstract void Stop();
+
+        protected void HandleNotification(Notification n)
         {
-            byte[] buffer = new byte[1024];
-            StringBuilder message = new StringBuilder();
+            INotificationHandler handler;
 
-            try
-            {
-                using (var connection = listener.EndAcceptBluetoothClient(result))
-                {
-                    using (var stream = connection.GetStream())
-                    {
-                        int bytesRead = 0;
-                        while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
-                        {
-                            message.Append(Encoding.ASCII.GetChars(buffer, 0, bytesRead));
-                        }
-
-                        stream.Close();
-                    }
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                message.Append(ex.Message);
-            }
-            finally
-            {
-                if (MessageEvent != null)
-                    MessageEvent(message.ToString());
-
-                listener.BeginAcceptBluetoothClient(new AsyncCallback(AcceptClient), null);
-            }
+            if (handlers.TryGetValue(n.Event, out handler))
+                handler.Process(n);
         }
     }
 }
