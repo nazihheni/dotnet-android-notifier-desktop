@@ -1,0 +1,1 @@
+A better supported notifier client for Windows built with .net and utilizing the best of Windows 7 features.
